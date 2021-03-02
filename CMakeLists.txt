@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.14)
 
 project (PARFLOW LANGUAGES C Fortran CXX)
 
-set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
+set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/modules/")
 
 #-----------------------------------------------------------------------------
 # Set standard compiler flagsx
@@ -412,6 +412,8 @@ if(${PARFLOW_FORTRAN_IMPLICIT_NONE})
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${PARFLOW_FORTRAN_IMPLICIT_NONE_FLAG}")
 endif(${PARFLOW_FORTRAN_IMPLICIT_NONE})
 
+set(CMAKE_Fortran_FORMAT FIXED)
+
 set(CMAKE_REQUIRED_FLAGS ${SAVE_CMAKE_REQUIRED_FLAGS})
 
 include(CheckCSourceCompiles)
@@ -485,7 +487,7 @@ else(PARFLOW_ENABLE_PROFILING)
   set (PARFLOW_PROFILE_OPTS "")
 endif(PARFLOW_ENABLE_PROFILING)
 
-include_directories ("${CMAKE_SOURCE_DIR}/pfsimulator/parflow_lib")
+include_directories ("${PROJECT_SOURCE_DIR}/pfsimulator/parflow_lib")
 
 include_directories ("${PROJECT_SOURCE_DIR}/pfsimulator/amps/${PARFLOW_AMPS_LAYER}")
 include_directories ("${PROJECT_SOURCE_DIR}/pfsimulator/amps/common")
